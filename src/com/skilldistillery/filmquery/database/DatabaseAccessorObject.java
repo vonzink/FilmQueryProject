@@ -92,7 +92,7 @@ public List<Actor> findActorsByFilmId(int filmId) {
 	 List<Actor> actors = new ArrayList<>();
 	 String sql = "SELECT * FROM actor JOIN film_actor "
 	 		+ "ON actor.id = film_actor.actor_id "
-	 		+ "WHERE film.actor.film_id = ?"; 
+	 		+ "WHERE film_actor.film_id = ?"; 
 	 
 	 try {
 		 Connection conn = DriverManager.getConnection(URL, USER, PASS);
