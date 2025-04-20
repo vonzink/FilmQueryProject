@@ -5,31 +5,20 @@ import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
 	private final String RESET = "\u001B[0m";
 	private final String GREEN_TEXT = "\u001B[32m";
 	private final String YELLOW_TEXT = "\u001B[33m";
-	
-    
     private final String RED_TEXT = "\u001B[31m";
     private final String BLUE_TEXT = "\u001B[34m";
-    String PURPLE_TEXT = "\u001B[35m";
-    String CYAN_TEXT = "\u001B[36m";
-    String BLACK_TEXT = "\u001B[30m";
-    String WHITE_TEXT = "\u001B[37m";
+    private final String PURPLE_TEXT = "\u001B[35m";
+    private final String CYAN_TEXT = "\u001B[36m";
     
-    String BLACK_BG = "\u001B[40m";
-    String RED_BG = "\u001B[41m";
-    String GREEN_BG = "\u001B[42m";
-    String YELLOW_BG = "\u001B[43m";
-    String BLUE_BG = "\u001B[44m";
-    String PURPLE_BG = "\u001B[45m";
-    String CYAN_BG = "\u001B[46m";
-    String WHITE_BG = "\u001B[47m";
     private final String BOLD = "\u001B[1m";
-    String ITALIC = "\u001B[3m";
+    private final String ITALIC = "\u001B[3m";
 
 	private Film film;
 	private DatabaseAccessor db = new DatabaseAccessorObject();
@@ -112,11 +101,18 @@ public class FilmQueryApp {
 			System.out.println(BOLD +"  Tite: " + RESET + film.getTitle());
 			System.out.println(BOLD +"  Year: "+ RESET + film.getYear());
 			System.out.println(BOLD +"  Rating: "+ RESET  + film.getRating());
+			System.out.println(BOLD +"  Language: "+ RESET  + film.getLanguage());
 			System.out.println(BOLD +"  Description: "+ RESET + film.getDescription());
-			System.out.println(BLUE_TEXT);
-			System.out.println("════════════════════════════════════════");
+			System.out.println(PURPLE_TEXT);
+			System.out.println();
+			System.out.println(ITALIC + "		Actors");
+			for(Actor actors : film.getActors()) {
+				System.out.println(CYAN_TEXT + "  -> " + actors.getFirstName() + " " + actors.getLastName());
+			}
+			System.out.println(BLUE_TEXT +
+					"════════════════════════════════════════");
 			System.out.println(RESET);
-				}
+			}
 	} catch (Exception e) {
 		input.nextLine(); 
 		System.out.println(); 
@@ -137,25 +133,32 @@ public class FilmQueryApp {
 				System.out.println();
 				System.out.println(RED_TEXT + " - film not found - ");
 			} else {
-				for (Film f : films){
+				for (Film keyWord : films){
 				System.out.println();
 				System.out.println(PURPLE_TEXT);
 				System.out.println("╔═══════════════════════════════════════╗");
 				System.out.println("║             SEARCH RESULTS            ║");
 				System.out.println("╚═══════════════════════════════════════╝");
 				System.out.println(RESET);
-				System.out.println(BOLD +"  Tite: " + RESET + f.getTitle());
-				System.out.println(BOLD +"  Year: "+ RESET + f.getYear());
-				System.out.println(BOLD +"  Rating: "+ RESET  + f.getRating());
-				System.out.println(BOLD +"  Description: "+ RESET + f.getDescription());
+				System.out.println(BOLD +"  Tite: " + RESET + keyWord.getTitle());
+				System.out.println(BOLD +"  Year: "+ RESET + keyWord.getYear());
+				System.out.println(BOLD +"  Rating: "+ RESET  + keyWord.getRating());
+				System.out.println(BOLD +"  Language: "+ RESET  + keyWord.getLanguage());
+				System.out.println(BOLD +"  Description: "+ RESET + keyWord.getDescription());
 				System.out.println(PURPLE_TEXT);
-				System.out.println("════════════════════════════════════════");
+				System.out.println();
+				System.out.println(ITALIC + "		Actors");
+				for(Actor actors : keyWord.getActors()) {
+					System.out.println(CYAN_TEXT + "  -> " + actors.getFirstName() + " " + actors.getLastName());
+				}
+				System.out.println(PURPLE_TEXT +
+						"════════════════════════════════════════");
 				System.out.println(RESET);
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println();
+			System.out.println(RED_TEXT + " -- film not found -- ");
 		}	
 	}
 }

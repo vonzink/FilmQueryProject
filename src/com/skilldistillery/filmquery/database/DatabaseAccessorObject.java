@@ -38,10 +38,18 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				film = new Film(rs.getInt("id"), rs.getString("title"), rs.getString("description"),
-						rs.getInt("release_year"), rs.getInt("language_id"), rs.getInt("rental_duration"),
-						rs.getDouble("rental_rate"), rs.getInt("length"), rs.getDouble("replacement_cost"),
-						rs.getString("rating"), rs.getString("special_features"));
+				film = new Film(rs.getInt("id"), 
+						rs.getString("title"), 
+						rs.getString("description"),
+						rs.getInt("release_year"), 
+						rs.getInt("language_id"), 
+						findLanguageById(rs.getInt("language_id")),
+						rs.getInt("rental_duration"),
+						rs.getDouble("rental_rate"), 
+						rs.getInt("length"), 
+						rs.getDouble("replacement_cost"),
+						rs.getString("rating"), 
+						rs.getString("special_features"));
 
 				List<Actor> actors = findActorsByFilmId(filmId);
 				film.setActors(actors);
@@ -66,7 +74,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				actor = new Actor(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"));
+				actor = new Actor(rs.getInt("id"), 
+							rs.getString("first_name"), 
+							rs.getString("last_name"));
 
 			}
 			rs.close();
@@ -90,8 +100,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				Actor actor = new Actor(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"));
+			while (rs.next()) {
+				Actor actor = new Actor(rs.getInt("id"), 
+								rs.getString("first_name"), 
+								rs.getString("last_name"));
+				
 				actors.add(actor);
 			}
 			rs.close();
@@ -116,6 +129,7 @@ public List<Film> findFilmByKeyword(String keyword) {
 		 stmt.setString(2, "%" + keyword + "%");
 		 ResultSet rs = stmt.executeQuery();
 		    		    
+			
 		    while (rs.next()) {
 		    	film = new Film(
 		    	rs.getInt("id"),
@@ -123,6 +137,7 @@ public List<Film> findFilmByKeyword(String keyword) {
                 rs.getString("description"),
                 rs.getInt("release_year"),
                 rs.getInt("language_id"),
+                findLanguageById(rs.getInt("language_id")),
                 rs.getInt("rental_duration"),
                 rs.getDouble("rental_rate"),
                 rs.getInt("length"),
@@ -144,5 +159,26 @@ public List<Film> findFilmByKeyword(String keyword) {
 	    }
 	return films;
 	
+	}
+@Override
+	public String findLanguageById(int languageId) {
+		String language = null;
+		String sql = "SELECT name FROM language WHERE id = ?";
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			stmt.setInt(1, languageId);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				language = rs.getString("name");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return language;
 	}
 }

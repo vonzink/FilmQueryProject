@@ -9,6 +9,7 @@ public class Film {
 	private String description; 
 	private Integer year; 
 	private int languageId; 
+	private String language; 
 	private Integer rentalDuration; 
 	private double rentalRate; 
 	private Integer length; 
@@ -16,24 +17,22 @@ public class Film {
 	private String rating; 
 	private String specialFeatures;
 	private List<Actor> actors;
-	
-	public Film() {
-		super();
-	}
 
 	public Film(List<Actor> actors) {
 		super();
 		this.actors = actors;
 	}
 
-	public Film(int id, String title, String description, Integer year, int languageId, Integer rentalDuration,
-			double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures) {
+	public Film(int id, String title, String description, Integer year, int languageId, String language,
+			Integer rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
+			String specialFeatures) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.year = year;
 		this.languageId = languageId;
+		this.language = language;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.length = length;
@@ -131,15 +130,6 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
-	@Override
-	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", year=" + year
-				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", ENUM=" + rating
-				+ ", specialFeatures=" + specialFeatures + "]";
-	}
-
-
 	public List<Actor> getActors() {
 		return actors;
 	}
@@ -148,6 +138,23 @@ public class Film {
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	@Override
+	public String toString() {
+		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", year=" + year
+				+ ", languageId=" + languageId + ", language=" + language + ", rentalDuration=" + rentalDuration
+				+ ", rentalRate=" + rentalRate + ", length=" + length + ", replacementCost=" + replacementCost
+				+ ", rating=" + rating + ", specialFeatures=" + specialFeatures + ", actors=" + actors + "]";
+	}
+	
 
 
 }
