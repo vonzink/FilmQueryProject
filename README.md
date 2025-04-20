@@ -1,6 +1,6 @@
 # FilmQueryProject
 
-![MOVIE IMAGE](./images/movie.png)
+<img src="images/Movie.png" alt="MOVIE IMAGE" width="200">
 
 # Description
 You will create a command-line application that retrieves and displays film data. It will be menu-based, allowing the user to choose actions and submit query data.
@@ -22,7 +22,7 @@ All user input and display output will be in methods of com.skilldistillery.film
 
 # Database Diagram
 
-![DATABASE DIAGRAM](./images/ERDiagram.png)
+![DATABASE DIAGRAM](images/Diagram.png)
 
 # Concepts Applied
 
@@ -104,6 +104,6 @@ this one was challanging, I started with trying to adjust the SQL command to JOI
 ## user story #5
 looping through the array for the actors wasnt to bad, I kept getting 1 actor in my list because my method in the Database Accessor Object was a "if" instead of a "while". 
 
-![MOVIE IMAGE](./images/movie.png)
+<img src="images/Movie.png" alt="MOVIE IMAGE" width="200">
 
 ZVZ
