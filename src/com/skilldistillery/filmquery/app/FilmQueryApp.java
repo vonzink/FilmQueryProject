@@ -1,5 +1,6 @@
 package com.skilldistillery.filmquery.app;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
@@ -12,7 +13,7 @@ public class FilmQueryApp {
 	private final String YELLOW_TEXT = "\u001B[33m";
 	
     
-    String RED_TEXT = "\u001B[31m";
+    private final String RED_TEXT = "\u001B[31m";
     private final String BLUE_TEXT = "\u001B[34m";
     String PURPLE_TEXT = "\u001B[35m";
     String CYAN_TEXT = "\u001B[36m";
@@ -58,7 +59,7 @@ public class FilmQueryApp {
 			System.out.println("╔═══════════════════════════════════════╗");
 			System.out.println("║        FILM QUERY MAIN MENU           ║");
 			System.out.println("╠═══════════════════════════════════════╣");
-			System.out.println("║1. Look up a film by its id            ║");
+			System.out.println("║1. Look up a film by it's id           ║");
 			System.out.println("║2. Look up a film by a search keyword  ║");
 			System.out.println("║3. Exit the application                ║");
 			System.out.println("╚═══════════════════════════════════════╝");
@@ -99,7 +100,8 @@ public class FilmQueryApp {
 				film = db.findFilmById(filmId);
 
 				if (film == null) {
-					System.out.println("Film not found");
+					System.out.println(); 
+					System.out.println(RED_TEXT + "- film not found - ");
 				} else {
 			System.out.println();
 			System.out.println(BLUE_TEXT);
@@ -117,11 +119,43 @@ public class FilmQueryApp {
 				}
 	} catch (Exception e) {
 		input.nextLine(); 
-		System.out.println(RED_TEXT + "Film not found");
+		System.out.println(); 
+		System.out.println(RED_TEXT + "-- film not found -- ");
 		}
 	}
 	
 	private void filmByKeyword() {
-		// TODO Auto-generated method stub
+		film = null; 
+		input.nextLine(); 
+		System.out.println("Search: ");		
+		String keywordFilm = input.nextLine(); 
+
+		try {
+			List<Film> films = db.findFilmByKeyword(keywordFilm); 
+			
+			if(films.isEmpty()) {
+				System.out.println();
+				System.out.println(RED_TEXT + " - film not found - ");
+			} else {
+				for (Film f : films){
+				System.out.println();
+				System.out.println(PURPLE_TEXT);
+				System.out.println("╔═══════════════════════════════════════╗");
+				System.out.println("║             SEARCH RESULTS            ║");
+				System.out.println("╚═══════════════════════════════════════╝");
+				System.out.println(RESET);
+				System.out.println(BOLD +"  Tite: " + RESET + f.getTitle());
+				System.out.println(BOLD +"  Year: "+ RESET + f.getYear());
+				System.out.println(BOLD +"  Rating: "+ RESET  + f.getRating());
+				System.out.println(BOLD +"  Description: "+ RESET + f.getDescription());
+				System.out.println(PURPLE_TEXT);
+				System.out.println("════════════════════════════════════════");
+				System.out.println(RESET);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	}
 }

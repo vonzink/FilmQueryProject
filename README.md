@@ -1,11 +1,27 @@
 # FilmQueryProject
 
-Overview
+# Description
 You will create a command-line application that retrieves and displays film data. It will be menu-based, allowing the user to choose actions and submit query data.
 
 All JDBC code will be encapsulated in methods of the com.skilldistillery.filmquery.database.DatabaseAccessorObject class. As you need new database access methods, declare them first in the DatabaseAccessor interface, then implement them in DatabaseAccessorObject. Methods should return objects like Film, Actor, and List<Actor>, not String or List<String>.
 
 All user input and display output will be in methods of com.skilldistillery.filmquery.app.FilmQueryApp (or additional application classes in that package, if you choose to create them.) Comment out app.test(); and uncomment app.launch() as a starting point.
+
+
+# Technologies used
+ - Java
+ - SQL
+ - Git/GitHub
+ - Sublime Text Editor
+ - zsh
+
+# Database Diagram
+
+![DATABASE DIAGRAM](FilmQuery/diagram.jpeg)
+
+# Concepts Applied
+
+# Plan
 
 USER STORY #1
 menu created. 
@@ -39,7 +55,13 @@ Get by ID complete
 
 USER STORY #3
 
-Search KEyward film lookup. If no matches are found. Otherwise they see a display of films where the key word was anywhere in the title. 
+Film by keyword complete
+
+╔═══════════════════════════════════════╗
+║             SEARCH RESULTS            ║
+╚═══════════════════════════════════════╝
+
+Search Keyword film lookup. If no matches are found. Otherwise they see a display of films where the key word was anywhere in the title. 
 
 USER STORY #4
 
