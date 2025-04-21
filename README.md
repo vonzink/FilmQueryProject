@@ -106,4 +106,18 @@ looping through the array for the actors wasnt to bad, I kept getting 1 actor in
 
 <img src="images/Movie.jpeg" alt="MOVIE IMAGE" width="200">
 
+
+### GitHub
+Note: had issues with github breaking connection
+
+```
+To https://github.com/vonzink/FilmQueryProject.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/vonzink/FilmQueryProject.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
 ZVZ
