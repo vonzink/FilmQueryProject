@@ -22,7 +22,7 @@ All user input and display output will be in methods of com.skilldistillery.film
 
 # Database Diagram
 
-![DATABASE DIAGRAM](images/Diagram.jpeg)
+![DATABASE DIAGRAM](images/diagram.jpeg)
 
 # Concepts Applied
 
